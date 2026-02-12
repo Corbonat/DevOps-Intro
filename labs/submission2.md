@@ -176,3 +176,66 @@ After reset --hard, HEAD moved back again to First, and both index and working t
 I then checked reflog and found b976f95 (Third commit), which allowed me to fully restore the previous state.
 This shows that reflog is a reliable recovery tool when commits disappear from normal log after reset.
 
+**Task 3:**
+```
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git switch -c side-branch
+Switched to a new branch 'side-branch'
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> echo "Branch commit" >> history.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git add history.txt && git commit -m "Side branch commit"
+At line:1 char:21
++ git add history.txt && git commit -m "Side branch commit"
++                     ~~
+The token '&&' is not a valid statement separator in this version.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git switch -
+Switched to branch 'feature/lab2'
+Your branch is up to date with 'origin/feature/lab2'.
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git switch -c side-branch
+fatal: a branch named 'side-branch' already exists
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git add history.txt                                      
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro>  git commit -m "Side branch commit"
+[feature/lab2 3a90fce] Side branch commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 history.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git switch -
+Switched to branch 'side-branch'
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git log --oneline --graph --all
+* 3a90fce (feature/lab2) Side branch commit
+* 69978c0 (HEAD -> side-branch, origin/feature/lab2) Task 2 done
+| * b976f95 (git-reset-practice) Third commit
+| * 28539c2 Second commit
+| * 793869d First commit
+|/
+* 244b41e Task 1 complete
+* 7584bed (main) Add test file
+| *   63e0daf (origin/main, origin/HEAD) Merge branch 'inno-devops-labs:main' into main
+| |\
+| |/
+|/|
+* | 6f044dd (upstream/main) Replace IPFS with Nix
+* | 0a87e1c refactor: reduce prescriptiveness in GitLab CI instructions
+* | eaea715 feat: add GitLab CI alternative instructions to lab3
+| * 4515622 chore: add PR template
+|/
+| * 0d2540f (origin/feature/lab1, feature/lab1) docs: Finished submissions.md (surly this time)
+| * 9b1a595 docs: Finished submissions.md
+| * 3995b9d docs: Added .png file with my SSH key on github
+| * fb05349 docs: Added .png file with autofilled template for PR
+| * 098f2a6 docs: Added .png file with my verified commit in github
+```
+I created a short-lived branch (`side-branch`), added one commit, switched back to the previous branch, and ran:
+
+`git log --oneline --graph --all`
+
+The graph output is shown above. It displays the side branch as a separate line, which makes branch structure easy to read.
+
+Commit messages used in this task:
+Side branch commit
+
+
+Reflection:
+The graph view helps me quickly understand where commits were made and how branches diverge.  
+It is much easier to track history in team work than reading a flat log.
+
