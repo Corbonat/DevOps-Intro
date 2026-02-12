@@ -239,3 +239,16 @@ Reflection:
 The graph view helps me quickly understand where commits were made and how branches diverge.  
 It is much easier to track history in team work than reading a flat log.
 
+**Task 4:**
+I created a lightweight tag on the latest commit:
+
+`git tag v1.0.0`  
+`git push origin v1.0.0`
+
+Associated hash for `v1.0.0`: `f8aa16a3377f355d6728292b50135d733903876c`  
+(checked with `git rev-list -n 1 v1.0.0`)
+
+Why tags matter:
+Tags mark important points in history, like release versions.  
+They make it easy to find stable states, connect CI/CD to releases, and prepare release notes.
+
