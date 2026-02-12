@@ -252,3 +252,65 @@ Why tags matter:
 Tags mark important points in history, like release versions.  
 They make it easy to find stable states, connect CI/CD to releases, and prepare release notes.
 
+**Task 5:**
+```
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git switch cmd-compare   
+Switched to branch 'cmd-compare'
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> echo "scratch" >> demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git add demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git commit -m "chore: add demo file for restore test"
+[cmd-compare fc58990] chore: add demo file for restore test
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> echo "working" >> demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git status
+On branch cmd-compare
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   demo.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git restore demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git status
+On branch cmd-compare
+nothing to commit, working tree clean
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> echo "staged change" >> demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git add demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git status
+On branch cmd-compare
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   demo.txt
+
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git restore --staged demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git status
+On branch cmd-compare
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   demo.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> echo "v2 change" >> demo.txt    
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git add demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git commit -m "chore: update demo file"
+[cmd-compare db5f8db] chore: update demo file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> 
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git restore --source=HEAD~1 demo.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git status
+On branch cmd-compare
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   demo.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+### When to use commands:
+
+Use `git switch` for branch operations.  
+Use `git restore` for file state changes.  
+Use `git checkout` mainly for older workflows or compatibility.
