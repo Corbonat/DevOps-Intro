@@ -1,3 +1,4 @@
+**Task 1**:
 ```
 PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git cat-file -p 7e4b981dc40a619c47abd2a701f4120367442c95
 100644 blob db7abc0be45b7051f5e4d6c5bf99208a9ddf8e7a    README.md
@@ -48,3 +49,130 @@ committer Iukharev Roman xxromchikx@gmail.com
  1000000000 +0300
 
 Add test file
+
+**Task 2:**
+```
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> "First commit"  | Out-File -Encoding utf8 file.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git add file.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git commit -m "First commit"
+[git-reset-practice 793869d] First commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> 
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> "Second commit" | Add-Content file.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git add file.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git commit -m "Second commit"
+[git-reset-practice 28539c2] Second commit
+ 1 file changed, 1 insertion(+)
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> 
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> "Third commit"  | Add-Content file.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git add file.txt
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git commit -m "Third commit"
+[git-reset-practice b976f95] Third commit
+ 1 file changed, 1 insertion(+)
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git log --oneline -3
+b976f95 (HEAD -> git-reset-practice) Third commit
+28539c2 Second commit
+793869d First commit
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git status
+On branch git-reset-practice
+nothing to commit, working tree clean
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git reset --soft HEAD~1
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git status
+On branch git-reset-practice
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   file.txt
+
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git log --oneline -3
+28539c2 (HEAD -> git-reset-practice) Second commit
+793869d First commit
+244b41e (origin/feature/lab2, feature/lab2) Task 1 complete
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git reset --hard HEAD~1
+HEAD is now at 793869d First commit
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git status
+On branch git-reset-practice
+nothing to commit, working tree clean
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git log --oneline -3
+793869d (HEAD -> git-reset-practice) First commit
+244b41e (origin/feature/lab2, feature/lab2) Task 1 complete
+7584bed (main) Add test file
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git reflog
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+28539c2 HEAD@{1}: reset: moving to HEAD~1
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+28539c2 HEAD@{1}: reset: moving to HEAD~1
+b976f95 HEAD@{2}: commit: Third commit
+28539c2 HEAD@{3}: commit: Second commit
+793869d (HEAD -> git-reset-practice) HEAD@{4}: commit: First commit
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+28539c2 HEAD@{1}: reset: moving to HEAD~1
+b976f95 HEAD@{2}: commit: Third commit
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+28539c2 HEAD@{1}: reset: moving to HEAD~1
+b976f95 HEAD@{2}: commit: Third commit
+28539c2 HEAD@{3}: commit: Second commit
+793869d (HEAD -> git-reset-practice) HEAD@{4}: commit: First commit
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+28539c2 HEAD@{1}: reset: moving to HEAD~1
+b976f95 HEAD@{2}: commit: Third commit
+28539c2 HEAD@{3}: commit: Second commit
+793869d (HEAD -> git-reset-practice) HEAD@{4}: commit: First commit
+244b41e (origin/feature/lab2, feature/lab2) HEAD@{5}: checkout: moving from feature/lab2 to git-reset-practice
+244b41e (origin/feature/lab2, feature/lab2) HEAD@{6}: commit: Task 1 complete
+7584bed (main) HEAD@{7}: checkout: moving from main to feature/lab2
+7584bed (main) HEAD@{8}: commit: Add test file
+6f044dd (upstream/main) HEAD@{9}: reset: moving to upstream/main
+4515622 HEAD@{10}: checkout: moving from feature/lab1 to main
+0d2540f (origin/feature/lab1, feature/lab1) HEAD@{11}: commit: docs: Finished submissions.md (surly this time)
+9b1a595 HEAD@{12}: commit: docs: Finished submissions.md
+3995b9d HEAD@{13}: commit: docs: Added .png file with my SSH key on github
+fb05349 HEAD@{14}: commit: docs: Added .png file with autofilled template for PR
+098f2a6 HEAD@{15}: commit: docs: Added .png file with my verified commit in github
+cc3ea7b HEAD@{16}: checkout: moving from main to feature/lab1
+4515622 HEAD@{17}: checkout: moving from feature/lab1 to main
+cc3ea7b HEAD@{18}: reset: moving to cc3ea7b
+226fda5 HEAD@{19}: checkout: moving from main to feature/lab1
+4515622 HEAD@{20}: cherry-pick: chore: add PR template
+d6b6a03 HEAD@{21}: reset: moving to origin/main
+...skipping...
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+28539c2 HEAD@{1}: reset: moving to HEAD~1
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+793869d (HEAD -> git-reset-practice) HEAD@{0}: reset: moving to HEAD~1
+28539c2 HEAD@{1}: reset: moving to HEAD~1
+b976f95 HEAD@{2}: commit: Third commit
+28539c2 HEAD@{3}: commit: Second commit
+793869d (HEAD -> git-reset-practice) HEAD@{4}: commit: First commit
+244b41e (origin/feature/lab2, feature/lab2) HEAD@{5}: checkout: moving from feature/lab2 to git-reset-practice
+244b41e (origin/feature/lab2, feature/lab2) HEAD@{6}: commit: Task 1 complete
+7584bed (main) HEAD@{7}: checkout: moving from main to feature/lab2
+7584bed (main) HEAD@{8}: commit: Add test file
+6f044dd (upstream/main) HEAD@{9}: reset: moving to upstream/main
+4515622 HEAD@{10}: checkout: moving from feature/lab1 to main
+0d2540f (origin/feature/lab1, feature/lab1) HEAD@{11}: commit: docs: Finished submissions.md (surly this time)
+9b1a595 HEAD@{12}: commit: docs: Finished submissions.md
+3995b9d HEAD@{13}: commit: docs: Added .png file with my SSH key on github
+fb05349 HEAD@{14}: commit: docs: Added .png file with autofilled template for PR
+098f2a6 HEAD@{15}: commit: docs: Added .png file with my verified commit in github
+cc3ea7b HEAD@{16}: checkout: moving from main to feature/lab1
+4515622 HEAD@{17}: checkout: moving from feature/lab1 to main
+cc3ea7b HEAD@{18}: reset: moving to cc3ea7b
+226fda5 HEAD@{19}: checkout: moving from main to feature/lab1
+4515622 HEAD@{20}: cherry-pick: chore: add PR template
+d6b6a03 HEAD@{21}: reset: moving to origin/main
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git reset --hard b976f95
+HEAD is now at b976f95 Third commit
+PS C:\Users\Roman\Documents\GitCourse\DevOps-Intro> git log --oneline -3
+b976f95 (HEAD -> git-reset-practice) Third commit
+28539c2 Second commit
+793869d First commit
+```
+
+I created three commits in git-reset-practice: First (793869d), Second (28539c2), and Third (b976f95).
+After reset --soft, HEAD moved back from Third to Second, but the changes from the removed commit stayed staged. This means history moved, while index and working tree still kept the change.
+After reset --hard, HEAD moved back again to First, and both index and working tree were cleared to match that commit.
+I then checked reflog and found b976f95 (Third commit), which allowed me to fully restore the previous state.
+This shows that reflog is a reliable recovery tool when commits disappear from normal log after reset.
+
