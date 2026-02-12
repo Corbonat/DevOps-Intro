@@ -314,3 +314,10 @@ no changes added to commit (use "git add" and/or "git commit -a")
 Use `git switch` for branch operations.  
 Use `git restore` for file state changes.  
 Use `git checkout` mainly for older workflows or compatibility.
+
+
+**Task 6:**
+## GitHub Community
+
+I starred the course repository and the simple-container-com/api project, and followed the professor, TAs, and classmates.  
+Starring helps discover and bookmark useful open-source projects, while following developers helps me learn from their activity and improve collaboration in team projects.
